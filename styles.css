@@ -1,0 +1,626 @@
+.enter-informations-button {
+    margin: auto; 
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    background-color: #dc143c;
+    color: white;
+    cursor: pointer;
+}
+.logo {
+    width: 50px;
+    height: 50px;
+}
+
+
+
+#content {
+    display: block; 
+    width: 100%;
+    max-width: 1200px;
+    padding: 20px;
+}
+
+.top-bar {
+    background-color: #1f1f1f;
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    margin-right: 50px;
+}
+
+.top-bar-content {
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+.search-bar {
+    flex: 1;
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: none;
+    background-color: #333;
+    color: #e0e0e0;
+}
+
+.give-informations-button {
+    margin-left: 10px;
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    background-color: #dc143c;  
+    color: white;
+    cursor: pointer;
+}
+
+.cards-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 20px;
+}
+
+.card {
+    background-color: #2c2c2c;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    margin: 10px;
+    flex: 1 1 300px;
+    display: flex;
+    padding: 15px;
+    align-items: center;
+    max-width: 600px;
+}
+
+.photo {
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    margin-right: 15px;
+}
+
+.card-details {
+    text-align: left;
+}
+
+.discord-name {
+    margin: 0;
+    font-size: 18px;
+    color: #e0e0e0;
+}
+
+.discord-id,
+.reason,
+.server,
+.date {
+    margin: 5px 0;
+    color: #b0b0b0;
+    font-size: 14px;
+}
+
+
+@keyframes blinkCursor {
+    50% {
+      border-right-color: transparent;
+    }
+  }
+
+  @keyframes typeAndDelete {
+    0%,
+    10% {
+      width: 0;
+    }
+    45%,
+    55% {
+      width: 6.2em;
+    } 
+    90%,
+    100% {
+      width: 0;
+    }
+  }
+
+  body {
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    font-family: Arial, sans-serif;
+padding: 0;
+box-sizing: border-box;
+background-color: #121212;
+color: #e0e0e0;
+  }
+
+  .terminal-loader {
+    border: 0.1em solid #333;
+    background-color: #1a1a1a;
+    color: #dc143c;
+    font-family: "Courier New", Courier, monospace;
+    font-size: 1em;
+    padding: 1.5em 1em;
+    width: 12em;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 4px;
+    position: relative;
+    overflow: hidden;
+    box-sizing: border-box;
+    z-index: 9999;
+    animation: fadeOut 15s forwards;
+  }
+
+  @keyframes fadeOut {
+    0% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0;
+      visibility: hidden;
+    }
+  }
+
+  .terminal-header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1.5em;
+    background-color: #333;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+    padding: 0 0.4em;
+    box-sizing: border-box;
+  }
+
+  .terminal-controls {
+    float: right;
+  }
+
+  .control {
+    display: inline-block;
+    width: 0.6em;
+    height: 0.6em;
+    margin-left: 0.4em;
+    border-radius: 50%;
+    background-color: #777;
+  }
+
+  .control.close {
+    background-color: #e33;
+  }
+
+  .control.minimize {
+    background-color: #ee0;
+  }
+
+  .control.maximize {
+    background-color: #dc143c;
+  }
+
+  .terminal-title {
+    float: left;
+    line-height: 1.5em;
+    color: #eee;
+  }
+
+  .text {
+    display: inline-block;
+    white-space: nowrap;
+    overflow: hidden;
+    border-right: 0.2em solid #dc143c; 
+    animation: typeAndDelete 4s steps(11) infinite,
+      blinkCursor 0.5s step-end infinite alternate;
+    margin-top: 1.5em;
+  }
+
+  #content {
+    display: none; 
+  }
+  .top-bar {
+    display: none; 
+  }
+
+  .cards-container {
+    display: none; 
+  }
+  .next-page {
+    --color: #fff;
+    --background: #dc143c;
+    --background-hover: #dc143c;
+    --background-left: #99112c;
+    --folder: #F3E9CB;
+    --folder-inner: #BEB393;
+    --paper: #FFFFFF;
+    --paper-lines: #BBC1E1;
+    --paper-behind: #E1E6F9;
+    --pencil-cap: #fff;
+    --pencil-top: #dc143c;
+    --pencil-middle: #fff;
+    --pencil-bottom: #dc143c;
+    --shadow: rgba(13, 15, 25, .2);
+    border: none;
+    outline: none;
+    cursor: pointer;
+    position: relative;
+    border-radius: 5px;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 19px;
+    -webkit-appearance: none;
+    -webkit-tap-highlight-color: transparent;
+    padding: 17px 29px 17px 69px;
+    transition: background 0.3s;
+    color: var(--color);
+    background: var(--bg, var(--background));
+  }
+  
+  .next-page > div {
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 53px;
+    position: absolute;
+    overflow: hidden;
+    border-radius: 5px 0 0 5px;
+    background: var(--background-left);
+  }
+  
+  .next-page > div .folder {
+    width: 23px;
+    height: 27px;
+    position: absolute;
+    left: 15px;
+    top: 13px;
+  }
+  
+  .next-page > div .folder .top {
+    left: 0;
+    top: 0;
+    z-index: 2;
+    position: absolute;
+    transform: translateX(var(--fx, 0));
+    transition: transform 0.4s ease var(--fd, 0.3s);
+  }
+  
+  .next-page > div .folder .top svg {
+    width: 24px;
+    height: 27px;
+    display: block;
+    fill: var(--folder);
+    transform-origin: 0 50%;
+    transition: transform 0.3s ease var(--fds, 0.45s);
+    transform: perspective(120px) rotateY(var(--fr, 0deg));
+  }
+  
+  .next-page > div .folder:before, .next-page > div .folder:after,
+  .next-page > div .folder .paper {
+    content: "";
+    position: absolute;
+    left: var(--l, 0);
+    top: var(--t, 0);
+    width: var(--w, 100%);
+    height: var(--h, 100%);
+    border-radius: 1px;
+    background: var(--b, var(--folder-inner));
+  }
+  
+  .next-page > div .folder:before {
+    box-shadow: 0 1.5px 3px var(--shadow), 0 2.5px 5px var(--shadow), 0 3.5px 7px var(--shadow);
+    transform: translateX(var(--fx, 0));
+    transition: transform 0.4s ease var(--fd, 0.3s);
+  }
+  
+  .next-page > div .folder:after,
+  .next-page > div .folder .paper {
+    --l: 1px;
+    --t: 1px;
+    --w: 21px;
+    --h: 25px;
+    --b: var(--paper-behind);
+  }
+  
+  .next-page > div .folder:after {
+    transform: translate(var(--pbx, 0), var(--pby, 0));
+    transition: transform 0.4s ease var(--pbd, 0s);
+  }
+  
+  .next-page > div .folder .paper {
+    z-index: 1;
+    --b: var(--paper);
+  }
+  
+  .next-page > div .folder .paper:before, .next-page > div .folder .paper:after {
+    content: "";
+    width: var(--wp, 14px);
+    height: 2px;
+    border-radius: 1px;
+    transform: scaleY(0.5);
+    left: 3px;
+    top: var(--tp, 3px);
+    position: absolute;
+    background: var(--paper-lines);
+    box-shadow: 0 12px 0 0 var(--paper-lines), 0 24px 0 0 var(--paper-lines);
+  }
+  
+  .next-page > div .folder .paper:after {
+    --tp: 6px;
+    --wp: 10px;
+  }
+  
+  .next-page > div .pencil {
+    height: 2px;
+    width: 3px;
+    border-radius: 1px 1px 0 0;
+    top: 8px;
+    left: 105%;
+    position: absolute;
+    z-index: 3;
+    transform-origin: 50% 19px;
+    background: var(--pencil-cap);
+    transform: translateX(var(--pex, 0)) rotate(35deg);
+    transition: transform 0.4s ease var(--pbd, 0s);
+  }
+  
+  .next-page > div .pencil:before, .next-page > div .pencil:after {
+    content: "";
+    position: absolute;
+    display: block;
+    background: var(--b, linear-gradient(var(--pencil-top) 55%, var(--pencil-middle) 55.1%, var(--pencil-middle) 60%, var(--pencil-bottom) 60.1%));
+    width: var(--w, 5px);
+    height: var(--h, 20px);
+    border-radius: var(--br, 2px 2px 0 0);
+    top: var(--t, 2px);
+    left: var(--l, -1px);
+  }
+  
+  .next-page > div .pencil:before {
+    -webkit-clip-path: polygon(0 5%, 5px 5%, 5px 17px, 50% 20px, 0 17px);
+    clip-path: polygon(0 5%, 5px 5%, 5px 17px, 50% 20px, 0 17px);
+  }
+  
+  .next-page > div .pencil:after {
+    --b: none;
+    --w: 3px;
+    --h: 6px;
+    --br: 0 2px 1px 0;
+    --t: 3px;
+    --l: 3px;
+    border-top: 1px solid var(--pencil-top);
+    border-right: 1px solid var(--pencil-top);
+  }
+  
+  .next-page:before, .next-page:after {
+    content: "";
+    position: absolute;
+    width: 10px;
+    height: 2px;
+    border-radius: 1px;
+    background: var(--color);
+    transform-origin: 9px 1px;
+    transform: translateX(var(--cx, 0)) scale(0.5) rotate(var(--r, -45deg));
+    top: 26px;
+    right: 16px;
+    transition: transform 0.3s;
+  }
+  
+  .next-page:after {
+    --r: 45deg;
+  }
+  
+  .next-page:hover {
+    --cx: 2px;
+    --bg: var(--background-hover);
+    --fx: -40px;
+    --fr: -60deg;
+    --fd: .15s;
+    --fds: 0s;
+    --pbx: 3px;
+    --pby: -3px;
+    --pbd: .15s;
+    --pex: -24px;
+  }
+  .prev-page {
+    --color: #fff;
+    --background: #dc143c;
+    --background-hover: #dc143c;
+    --background-right: #99112c;
+    --folder: #F3E9CB;
+    --folder-inner: #BEB393;
+    --paper: #FFFFFF;
+    --paper-lines: #BBC1E1;
+    --paper-behind: #E1E6F9;
+    --pencil-cap: #fff;
+    --pencil-top: #dc143c;
+    --pencil-middle: #fff;
+    --pencil-bottom: #dc143c;
+    --shadow: rgba(13, 15, 25, .2);
+    border: none;
+    outline: none;
+    cursor: pointer;
+    position: relative;
+    border-radius: 5px;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 19px;
+    -webkit-appearance: none;
+    -webkit-tap-highlight-color: transparent;
+    padding: 17px 69px 17px 29px;
+    transition: background 0.3s;
+    color: var(--color);
+    background: var(--bg, var(--background));
+}
+
+.prev-page > div {
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 53px;
+    position: absolute;
+    overflow: hidden;
+    border-radius: 0 5px 5px 0;
+    background: var(--background-right);
+}
+
+.prev-page > div .folder {
+    width: 23px;
+    height: 27px;
+    position: absolute;
+    right: 15px;
+    top: 13px;
+}
+
+.prev-page > div .folder .top {
+    right: 0;
+    top: 0;
+    z-index: 2;
+    position: absolute;
+    transform: translateX(var(--fx, 0));
+    transition: transform 0.4s ease var(--fd, 0.3s);
+}
+
+.prev-page > div .folder .top svg {
+    width: 24px;
+    height: 27px;
+    display: block;
+    fill: var(--folder);
+    transform-origin: 100% 50%;
+    transition: transform 0.3s ease var(--fds, 0.45s);
+    transform: perspective(120px) rotateY(var(--fr, 0deg));
+}
+
+.prev-page > div .folder:before, .prev-page > div .folder:after,
+.prev-page > div .folder .paper {
+    content: "";
+    position: absolute;
+    right: var(--r, 0);
+    top: var(--t, 0);
+    width: var(--w, 100%);
+    height: var(--h, 100%);
+    border-radius: 1px;
+    background: var(--b, var(--folder-inner));
+}
+
+.prev-page > div .folder:before {
+    box-shadow: 0 1.5px 3px var(--shadow), 0 2.5px 5px var(--shadow), 0 3.5px 7px var(--shadow);
+    transform: translateX(var(--fx, 0));
+    transition: transform 0.4s ease var(--fd, 0.3s);
+}
+
+.prev-page > div .folder:after,
+.prev-page > div .folder .paper {
+    --r: 1px;
+    --t: 1px;
+    --w: 21px;
+    --h: 25px;
+    --b: var(--paper-behind);
+}
+
+.prev-page > div .folder:after {
+    transform: translate(var(--pbx, 0), var(--pby, 0));
+    transition: transform 0.4s ease var(--pbd, 0s);
+}
+
+.prev-page > div .folder .paper {
+    z-index: 1;
+    --b: var(--paper);
+}
+
+.prev-page > div .folder .paper:before, .prev-page > div .folder .paper:after {
+    content: "";
+    width: var(--wp, 14px);
+    height: 2px;
+    border-radius: 1px;
+    transform: scaleY(0.5);
+    right: 3px;
+    top: var(--tp, 3px);
+    position: absolute;
+    background: var(--paper-lines);
+    box-shadow: 0 12px 0 0 var(--paper-lines), 0 24px 0 0 var(--paper-lines);
+}
+
+.prev-page > div .folder .paper:after {
+    --tp: 6px;
+    --wp: 10px;
+}
+
+.prev-page > div .pencil {
+    height: 2px;
+    width: 3px;
+    border-radius: 1px 1px 0 0;
+    top: 8px;
+    right: 105%;
+    position: absolute;
+    z-index: 3;
+    transform-origin: 50% 19px;
+    background: var(--pencil-cap);
+    transform: translateX(var(--pex, 0)) rotate(-35deg);
+    transition: transform 0.4s ease var(--pbd, 0s);
+}
+
+.prev-page > div .pencil:before, .prev-page > div .pencil:after {
+    content: "";
+    position: absolute;
+    display: block;
+    background: var(--b, linear-gradient(var(--pencil-top) 55%, var(--pencil-middle) 55.1%, var(--pencil-middle) 60%, var(--pencil-bottom) 60.1%));
+    width: var(--w, 5px);
+    height: var(--h, 20px);
+    border-radius: var(--br, 2px 2px 0 0);
+    top: var(--t, 2px);
+    right: var(--r, -1px);
+}
+
+.prev-page > div .pencil:before {
+    -webkit-clip-path: polygon(100% 5%, 0 5%, 0 17px, 50% 20px, 100% 17px);
+    clip-path: polygon(100% 5%, 0 5%, 0 17px, 50% 20px, 100% 17px);
+}
+
+.prev-page > div .pencil:after {
+    --b: none;
+    --w: 3px;
+    --h: 6px;
+    --br: 2px 0 1px 0;
+    --t: 3px;
+    --r: 3px;
+    border-top: 1px solid var(--pencil-top);
+    border-left: 1px solid var(--pencil-top);
+}
+
+.prev-page:before, .prev-page:after {
+    content: "";
+    position: absolute;
+    width: 10px;
+    height: 2px;
+    border-radius: 1px;
+    background: var(--color);
+    transform-origin: 1px 1px;
+    transform: translateX(var(--cx, 0)) scale(0.5) rotate(var(--r, -45deg));
+    top: 26px;
+    left: 16px;
+    transition: transform 0.3s;
+}
+
+.prev-page:after {
+    --r: 45deg;
+}
+
+.prev-page:hover {
+    --cx: -2px;
+    --bg: var(--background-hover);
+    --fx: 40px;
+    --fr: 60deg;
+    --fd: .15s;
+    --fds: 0s;
+    --pbx: -3px;
+    --pby: 3px;
+    --pbd: .15s;
+    --pex: 24px;
+}
+
+  

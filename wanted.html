@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Morocco's Most Wanted Persons</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+    <div class="terminal-loader">
+        <div class="terminal-header">
+          <div class="terminal-title">Status</div>
+          <div class="terminal-controls">
+            <div class="control close"></div>
+            <div class="control minimize"></div>
+            <div class="control maximize"></div>
+          </div>
+        </div>
+        <div class="text">Fetching ...</div>
+    </div>
+
+    <div id="content">
+        <div class="top-bar">
+            <div class="top-bar-content">
+                <img src="logo.png" alt="Public Database Logo" class="logo">
+                <input type="text" placeholder="Search..." class="search-bar">
+                <button class="give-informations-button">I have information</button>
+            </div>
+        </div>
+
+        <div class="cards-container">
+        </div>
+
+        <div class="pagination">
+            <button class="prev-page" onclick="prevPage()">
+                <div>
+                    <div class="pencil"></div>
+                    <div class="folder">
+                        <div class="top-reversed">
+                            <svg viewBox="0 0 24 27">
+                                <path d="M23,0 L1,0 C0.44771525,-1.01453063e-16 1.01453063e-16,0.44771525 0,1 L0,8.17157288 C0,8.70200585 0.21071368,9.21071368 0.58578644,9.58578644 L3.4142136,12.4142136 C3.78928632,12.7892863 4,13.2979941 4,13.8284271 L4,26 C4,26.5522847 4.44771525,27 5,27 L23,27 C23.5522847,27 24,26.5522847 24,26 L24,1 C24,0.44771525 23.5522847,1.01453063e-16 23,0 Z"></path>
+                            </svg>
+                        </div>
+                        <div class="paper"></div>
+                    </div>
+                </div>
+                Previous Page
+            </button>
+
+            <button class="next-page" onclick="nextPage()">
+                <div>
+                    <div class="pencil"></div>
+                    <div class="folder">
+                        <div class="top">
+                            <svg viewBox="0 0 24 27">
+                                <path d="M1,0 L23,0 C23.5522847,-1.01453063e-16 24,0.44771525 24,1 L24,8.17157288 C24,8.70200585 23.7892863,9.21071368 23.4142136,9.58578644 L20.5857864,12.4142136 C20.2107137,12.7892863 20,13.2979941 20,13.8284271 L20,26 C20,26.5522847 19.5522847,27 19,27 L1,27 C0.44771525,27 6.76353751e-17,26.5522847 0,26 L0,1 C-6.76353751e-17,0.44771525 0.44771525,1.01453063e-16 1,0 Z"></path>
+                            </svg>
+                        </div>
+                        <div class="paper"></div>
+                    </div>
+                </div>
+                Next Page
+            </button>
+        </div>
+    </div>
+
+    <script>
+        const cardsPerPage = 3;
+        let currentPage = 1;
+        const cardsData = [
+            {
+                "photo": "https://ws-public.interpol.int/notices/v1/red/2024-23382/images/63043662",
+                "suspectName": "Suspect Name 1",
+                "gender": "Gender 1",
+                "nationality": "Nationality 1",
+                "charges": "Charges 1",
+                "date": "2024-07-18"
+            },
+            {
+                "photo": "https://ws-public.interpol.int/notices/v1/red/2016-20180/images/60047317",
+                "suspectName": "Suspect Name 2",
+                "gender": "Gender 2",
+                "nationality": "Nationality 2",
+                "charges": "Charges 2",
+                "date": "2024-07-19"
+            },
+            {
+                "photo": "https://ws-public.interpol.int/notices/v1/red/2010-39144/images/56900230",
+                "suspectName": "Suspect Name 3",
+                "gender": "Gender 3",
+                "nationality": "Nationality 3",
+                "charges": "Charges 3",
+                "date": "2024-07-20"
+            },
+            {
+                "photo": "avatar_url.jpg",
+                "suspectName": "Suspect Name 4",
+                "gender": "Gender 4",
+                "nationality": "Nationality 4",
+                "charges": "Charges 4",
+                "date": "2024-07-21"
+            },
+            {
+                "photo": "avatar_url.jpg",
+                "suspectName": "Suspect Name 5",
+                "gender": "Gender 5",
+                "nationality": "Nationality 5",
+                "charges": "Charges 5",
+                "date": "2024-07-22"
+            },
+            {
+                "photo": "avatar_url.jpg",
+                "suspectName": "Suspect Name 6",
+                "gender": "Gender 6",
+                "nationality": "Nationality 6",
+                "charges": "Charges 6",
+                "date": "2024-07-23"
+            },
+            {
+                "photo": "avatar_url.jpg",
+                "suspectName": "Suspect Name 7",
+                "gender": "Gender 7",
+                "nationality": "Nationality 7",
+                "charges": "Charges 7",
+                "date": "2024-07-24"
+            },
+            {
+                "photo": "avatar_url.jpg",
+                "suspectName": "Suspect Name 8",
+                "gender": "Gender 8",
+                "nationality": "Nationality 8",
+                "charges": "Charges 8",
+                "date": "2024-07-25"
+            },
+            {
+                "photo": "avatar_url.jpg",
+                "suspectName": "Suspect Name 9",
+                "gender": "Gender 9",
+                "nationality": "Nationality 9",
+                "charges": "Charges 9",
+                "date": "2024-07-26"
+            }
+        ];
+    
+        function displayCards() {
+            const cardsContainer = document.querySelector('.cards-container');
+            cardsContainer.innerHTML = '';
+    
+            const start = (currentPage - 1) * cardsPerPage;
+            const end = start + cardsPerPage;
+            const cardsToShow = cardsData.slice(start, end);
+    
+            cardsToShow.forEach(card => {
+                const cardElement = document.createElement('div');
+                cardElement.classList.add('card');
+                cardElement.innerHTML = `
+                    <img src="${card.photo}" alt="photo" class="photo">
+                    <div class="card-details">
+                        <h3 class="suspect-name">${card.suspectName}</h3>
+                        <p class="gender">Gender: ${card.gender}</p>
+                        <p class="nationality">Nationality: ${card.nationality}</p>
+                        <p class="charges">Charges: ${card.charges}</p>
+                        <p class="date">Date: ${card.date}</p>
+                    </div>
+                `;
+                cardsContainer.appendChild(cardElement);
+            });
+        }
+    
+        function prevPage() {
+            if (currentPage > 1) {
+                currentPage--;
+                displayCards();
+            }
+        }
+    
+        function nextPage() {
+            if (currentPage < Math.ceil(cardsData.length / cardsPerPage)) {
+                currentPage++;
+                displayCards();
+            }
+        }
+    
+        window.addEventListener('load', function () {
+            document.querySelector('.terminal-loader').classList.add('hidden');
+    
+            setTimeout(function () {
+                document.getElementById('content').style.display = 'block';
+                document.querySelector('.top-bar').style.display = 'block';
+                document.querySelector('.cards-container').style.display = 'flex';
+                displayCards();
+            }, 15000);
+        });
+    </script>
+    
