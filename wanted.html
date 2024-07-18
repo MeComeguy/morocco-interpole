@@ -25,7 +25,7 @@
             <div class="top-bar-content">
                 <img src="logo.png" alt="Public Database Logo" class="logo">
                 <input type="text" placeholder="Search..." class="search-bar">
-                <button class="give-informations-button">I have information</button>
+                <button class="give-informations-button">I have informations</button>
             </div>
         </div>
 
@@ -82,7 +82,8 @@
                         gender: 'Unknown',
                         nationality: record.nationalities.join(', '),
                         charges: 'Charges not specified',
-                        date: record.date_of_birth || 'Unknown'
+                        date: record.date_of_birth || 'Unknown',
+                        id: record.entity_id  // Assuming each record has a unique identifier
                     }));
                     displayCards();
                 } else {
@@ -112,6 +113,9 @@
                         <p class="date">Date of Birth: ${card.date}</p>
                     </div>
                 `;
+                cardElement.onclick = () => {
+                    window.location.href = `suspect.html?id=${card.id}`;
+                };
                 cardsContainer.appendChild(cardElement);
             });
         }
@@ -141,5 +145,5 @@
             }, 15000);
         });
     </script>
-    
-    
+</body>
+</html>
