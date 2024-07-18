@@ -68,80 +68,30 @@
     <script>
         const cardsPerPage = 3;
         let currentPage = 1;
-        const cardsData = [
-            {
-                "photo": "https://ws-public.interpol.int/notices/v1/red/2024-23382/images/63043662",
-                "suspectName": "Suspect Name 1",
-                "gender": "Gender 1",
-                "nationality": "Nationality 1",
-                "charges": "Charges 1",
-                "date": "2024-07-18"
-            },
-            {
-                "photo": "https://ws-public.interpol.int/notices/v1/red/2016-20180/images/60047317",
-                "suspectName": "Suspect Name 2",
-                "gender": "Gender 2",
-                "nationality": "Nationality 2",
-                "charges": "Charges 2",
-                "date": "2024-07-19"
-            },
-            {
-                "photo": "https://ws-public.interpol.int/notices/v1/red/2010-39144/images/56900230",
-                "suspectName": "Suspect Name 3",
-                "gender": "Gender 3",
-                "nationality": "Nationality 3",
-                "charges": "Charges 3",
-                "date": "2024-07-20"
-            },
-            {
-                "photo": "avatar_url.jpg",
-                "suspectName": "Suspect Name 4",
-                "gender": "Gender 4",
-                "nationality": "Nationality 4",
-                "charges": "Charges 4",
-                "date": "2024-07-21"
-            },
-            {
-                "photo": "avatar_url.jpg",
-                "suspectName": "Suspect Name 5",
-                "gender": "Gender 5",
-                "nationality": "Nationality 5",
-                "charges": "Charges 5",
-                "date": "2024-07-22"
-            },
-            {
-                "photo": "avatar_url.jpg",
-                "suspectName": "Suspect Name 6",
-                "gender": "Gender 6",
-                "nationality": "Nationality 6",
-                "charges": "Charges 6",
-                "date": "2024-07-23"
-            },
-            {
-                "photo": "avatar_url.jpg",
-                "suspectName": "Suspect Name 7",
-                "gender": "Gender 7",
-                "nationality": "Nationality 7",
-                "charges": "Charges 7",
-                "date": "2024-07-24"
-            },
-            {
-                "photo": "avatar_url.jpg",
-                "suspectName": "Suspect Name 8",
-                "gender": "Gender 8",
-                "nationality": "Nationality 8",
-                "charges": "Charges 8",
-                "date": "2024-07-25"
-            },
-            {
-                "photo": "avatar_url.jpg",
-                "suspectName": "Suspect Name 9",
-                "gender": "Gender 9",
-                "nationality": "Nationality 9",
-                "charges": "Charges 9",
-                "date": "2024-07-26"
+        let cardsData = [];
+    
+        async function fetchCards() {
+            try {
+                const response = await fetch('https://ws-public.interpol.int/notices/v1/red?nationality=MA&resultPerPage=200');
+                const data = await response.json();
+    
+                if (data._embedded && data._embedded.notices) {
+                    cardsData = data._embedded.notices.map(record => ({
+                        photo: record._links.thumbnail.href,
+                        suspectName: `${record.forename} ${record.name}`,
+                        gender: 'Unknown',
+                        nationality: record.nationalities.join(', '),
+                        charges: 'Charges not specified',
+                        date: record.date_of_birth || 'Unknown'
+                    }));
+                    displayCards();
+                } else {
+                    console.error('Unexpected response structure:', data);
+                }
+            } catch (error) {
+                console.error('Error fetching data:', error);
             }
-        ];
+        }
     
         function displayCards() {
             const cardsContainer = document.querySelector('.cards-container');
@@ -158,10 +108,8 @@
                     <img src="${card.photo}" alt="photo" class="photo">
                     <div class="card-details">
                         <h3 class="suspect-name">${card.suspectName}</h3>
-                        <p class="gender">Gender: ${card.gender}</p>
                         <p class="nationality">Nationality: ${card.nationality}</p>
-                        <p class="charges">Charges: ${card.charges}</p>
-                        <p class="date">Date: ${card.date}</p>
+                        <p class="date">Date of Birth: ${card.date}</p>
                     </div>
                 `;
                 cardsContainer.appendChild(cardElement);
@@ -189,8 +137,9 @@
                 document.getElementById('content').style.display = 'block';
                 document.querySelector('.top-bar').style.display = 'block';
                 document.querySelector('.cards-container').style.display = 'flex';
-                displayCards();
+                fetchCards();
             }, 15000);
         });
     </script>
+    
     
