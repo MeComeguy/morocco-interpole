@@ -1,19 +1,13 @@
 {
-  "name": "wantedinterpole",
+  "name": "my-project",
   "version": "1.0.0",
-  "description": "",
-  "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-"start": "./node_modules/.bin/netlify-lambda serve src",
-"build": "./node_modules/.bin/netlify-lambda build src"
+    "start": "node server.js",
+    "build": "echo 'No build step needed'",
+    "dev": "node server.js"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
   "dependencies": {
-    "ejs": "^3.1.10",
-    "express": "^4.19.2",
-    "netlify-lambda": "^2.0.16"
+    "express": "^4.17.1",
+    "ejs": "^3.1.6"
   }
 }
