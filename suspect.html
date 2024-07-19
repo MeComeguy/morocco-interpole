@@ -6,19 +6,18 @@
     <title>Suspect Profile</title>
     <link rel="stylesheet" href="styles.css">
     <style>
-        /* Style for the top bar */
         .top-bar {
             background-color: #333;
             color: #fff;
             padding: 10px;
-            position: fixed; /* Keeps the top bar fixed at the top */
+            position: fixed;
             top: 0;
             left: 30%;
-            width: 30%; /* Ensures it spans the full width */
+            width: 30%;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            z-index: 1000; /* Makes sure it stays on top of other content */
+            z-index: 1000;
         }
 
         .top-bar-content {
@@ -52,7 +51,6 @@
             background-color: #dc143c;
         }
 
-        /* Style for the content below the top bar */
         body {
             margin: 0;
             padding: 0;
@@ -60,7 +58,7 @@
         }
 
         .content {
-            margin-top: 80px; /* Adjust this value if needed to ensure content is not hidden under the top bar */
+            margin-top: 80px;
         }
 
         .suspect-profile {
@@ -111,6 +109,7 @@
                 }
                 const data = await response.json();
                 displaySuspectDetails(data);
+                setupButtons(id);
             } catch (error) {
                 console.error('Error fetching suspect details:', error);
                 const detailsElement = document.querySelector('.profile-details');
@@ -119,42 +118,37 @@
                 }
             }
         }
-
+    
         function displaySuspectDetails(data) {
             const photoElement = document.querySelector('.photo');
             const suspectNameElement = document.querySelector('.suspect-name');
             const nationalityElement = document.querySelector('.nationality');
             const dateElement = document.querySelector('.date');
             const chargesElement = document.querySelector('.charges');
-
+    
             if (photoElement) {
-                // Set photo
                 if (data._links && data._links.thumbnail && data._links.thumbnail.href) {
                     photoElement.src = data._links.thumbnail.href;
                     photoElement.alt = `${data.forename} ${data.name}`;
                 } else {
-                    photoElement.src = 'default-image.jpg'; // Placeholder image if no photo is available
+                    photoElement.src = 'default-image.jpg';
                     photoElement.alt = 'Photo not available';
                 }
             }
-
+    
             if (suspectNameElement) {
-                // Set suspect name
                 suspectNameElement.textContent = `${data.forename} ${data.name}` || 'Name not available';
             }
-
+    
             if (nationalityElement) {
-                // Set nationality
                 nationalityElement.textContent = `Nationality: ${data.nationalities ? data.nationalities.join(', ') : 'Nationality not available'}`;
             }
-
+    
             if (dateElement) {
-                // Set date of birth
                 dateElement.textContent = `Date of Birth: ${data.date_of_birth || 'Unknown'}`;
             }
-
+    
             if (chargesElement) {
-                // Set charges
                 if (data.arrest_warrants && data.arrest_warrants.length > 0) {
                     const charges = data.arrest_warrants.map(warrant => warrant.charge).join(', ');
                     chargesElement.textContent = `Charges: ${charges}`;
@@ -163,12 +157,29 @@
                 }
             }
         }
-
+    
         function getQueryParameter(name) {
             const urlParams = new URLSearchParams(window.location.search);
             return urlParams.get(name);
         }
-
+    
+        function setupButtons(id) {
+            const homeButton = document.querySelector('.home');
+            const informationsButton = document.querySelector('.informations');
+    
+            if (homeButton) {
+                homeButton.addEventListener('click', () => {
+                    window.location.href = 'wanted.html';
+                });
+            }
+    
+            if (informationsButton) {
+                informationsButton.addEventListener('click', () => {
+                    window.open(`https://www.interpol.int/Contacts/Fugitives-wanted-persons?notice=${id}`, '_blank'); // Opens the link in a new tab or window with the ID
+                });
+            }
+        }
+    
         window.addEventListener('load', function () {
             const suspectId = getQueryParameter('id');
             if (suspectId) {
@@ -181,24 +192,6 @@
                 }
             }
         });
-
-        // Add event listeners to buttons
-        document.addEventListener('DOMContentLoaded', () => {
-            const homeButton = document.querySelector('.home');
-            const informationsButton = document.querySelector('.informations');
-
-            if (homeButton) {
-                homeButton.addEventListener('click', () => {
-                    window.location.href = 'wanted.html'; // Replace with your home page URL
-                });
-            }
-
-            if (informationsButton) {
-    informationsButton.addEventListener('click', () => {
-        window.open('https://www.interpol.int/Contacts/Fugitives-wanted-persons?notice=2024-46872', '_blank'); // Opens the link in a new tab or window
-    });
-}
-        });
-    </script>
+    </script>    
 </body>
 </html>
