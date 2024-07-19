@@ -1,7 +1,8 @@
-const express = require('express');
-const path = require('path');
+const express = 'express';
+const path = 'path';
+const serverless = 'serverless-http';
+
 const app = express();
-const port = 3000;
 
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
@@ -21,6 +22,9 @@ app.get('/suspect', (req, res) => {
     res.render('suspect', { suspectId });
 });
 
-app.listen(port, () => {
-    console.log(`Server running at http://localhost:${port}/`);
-});
+const handler = ServerlessHttp(app);
+
+module.exports.handler = async(event, context) => {
+    const result = await handler(event, context);
+    return result;
+}
