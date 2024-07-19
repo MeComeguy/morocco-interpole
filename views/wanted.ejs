@@ -28,8 +28,8 @@
         <div class="top-bar">
             <div class="top-bar-content">
                 <img src="/logo.png" alt="Public Database Logo" class="logo">
-                <input type="text" placeholder="Search..." class="search-bar">
-                <button class="give-informations-button">I have informations</button>
+                <input type="text" id="search-bar" placeholder="Search..." class="search-bar">
+                <button class="give-informations-button" onclick="window.location.href='https://www.interpol.int/Contacts/Fugitives-wanted-persons'">I have informations</button>
             </div>
         </div>
 
@@ -73,6 +73,7 @@
         const cardsPerPage = 3;
         let currentPage = 1;
         let cardsData = [];
+        let filteredData = [];
     
         async function fetchCards() {
             try {
@@ -89,6 +90,7 @@
                         date: record.date_of_birth || 'Unknown',
                         id: record.entity_id
                     }));
+                    filteredData = cardsData;
                     displayCards();
                 } else {
                     console.error('Unexpected response structure:', data);
@@ -104,7 +106,7 @@
     
             const start = (currentPage - 1) * cardsPerPage;
             const end = start + cardsPerPage;
-            const cardsToShow = cardsData.slice(start, end);
+            const cardsToShow = filteredData.slice(start, end);
     
             cardsToShow.forEach(card => {
                 const cardElement = document.createElement('div');
@@ -132,10 +134,19 @@
         }
     
         function nextPage() {
-            if (currentPage < Math.ceil(cardsData.length / cardsPerPage)) {
+            if (currentPage < Math.ceil(filteredData.length / cardsPerPage)) {
                 currentPage++;
                 displayCards();
             }
+        }
+
+        function searchCards(query) {
+            query = query.toLowerCase();
+            filteredData = cardsData.filter(card => 
+                card.suspectName.toLowerCase().includes(query)
+            );
+            currentPage = 1;
+            displayCards();
         }
     
         window.addEventListener('load', function () {
@@ -147,6 +158,10 @@
                 document.querySelector('.cards-container').style.display = 'flex';
                 fetchCards();
             }, 15000);
+        });
+
+        document.getElementById('search-bar').addEventListener('input', function () {
+            searchCards(this.value);
         });
     </script>
 </body>
