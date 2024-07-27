@@ -23,9 +23,8 @@
 </p>
 
 <p align="center">
-  <a href="#key-features">Morocco's Most Wanted</a> •
+  <a href="#key-features">Key Features</a> •
   <a href="#how-to-use">How To Use</a> •
-  <a href="#download">Download</a> •
   <a href="#credits">Credits</a> •
   <a href="#contact">Contact</a> •
   <a href="#license">License</a>
@@ -35,7 +34,7 @@
   <img src="https://cdn.discordapp.com/attachments/1119257753987334205/1263828197443895366/2024-07-1913-55-05-ezgif.com-speed.gif?ex=669ba73b&is=669a55bb&hm=0ebb641c739b8b1eb884e0160052d3472b3300746a81b1abab1a00f77ae7c0e7&" alt="screenshot">
 </p>
 
-## Morocco's Most Wanted Features
+## Key Features
 
 * **Real-Time Updates**:
   - Get the latest information on Morocco's most wanted people from the [Interpol API](https://interpol.api.bund.dev/).
@@ -82,7 +81,7 @@ This web app uses the following open source packages:
 - [Node.js](https://nodejs.org/)
 - [Loader and buttons](https://uiverse.io/)
 
-## Contact on Discord
+## Contact
 
 
   <a href="https://discord.com/users/1119232751678259200">
